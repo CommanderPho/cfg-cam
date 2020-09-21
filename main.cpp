@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     //argv[1] = (char *)"--ignorefn";
 
     string ProfStr;
-    bool readVideoDevices, saveVideoDevices = false;
+    bool readVideoDevices = false, saveVideoDevices = false;
     int i = 1;
     for(; i < argc; i++) {
         string arg(argv[i]);
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    if (ProfStr == "")
+    if (ProfStr.empty())
         ProfStr = "cam_sett"; //default file name
 
     CamSetAll camupd;
