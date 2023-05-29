@@ -226,6 +226,8 @@ void SetDeviceSettings(IEnumMoniker *pEnum) {
                                                 hr = pProcAmp->Set(VideoProcAmp_Sharpness, ParValue, FlagManual ? VideoProcAmp_Flags_Manual : VideoProcAmp_Flags_Auto);
                                             } else if (Parameter == "VideoProcAmp_WhiteBalance") {
                                                 hr = pProcAmp->Set(VideoProcAmp_WhiteBalance, ParValue, FlagManual ? VideoProcAmp_Flags_Manual : VideoProcAmp_Flags_Auto);
+                                            } else if (Parameter == "VideoProcAmp_PowerlineFrequency") {
+                                                hr = pProcAmp->Set(VideoProcAmp_PowerlineFrequency, ParValue, FlagManual ? VideoProcAmp_Flags_Manual : VideoProcAmp_Flags_Auto);
                                             } else logMe(LOG_DBG, "VideoProcAmp string not found"); //no match found, so skip in silent
 
                                             logMe(LOG_DBG, "HRESULT: " + to_string(hr));
@@ -402,6 +404,13 @@ void GetDeviceSettings(IEnumMoniker *pEnum) {
                     settArray.push_back("VideoProcAmp_WhiteBalance=" +
                             to_string(Val) +
                             ((Flags > VideoProcAmp_Flags_Auto) ? " [Manual]" : " [Auto]"));
+                }
+
+                hr = pProcAmp->Get(VideoProcAmp_PowerlineFrequency, &Val, &Flags);
+                if (SUCCEEDED(hr)) {
+                    settArray.push_back("VideoProcAmp_PowerlineFrequency=" +
+                        to_string(Val) +
+                        ((Flags > VideoProcAmp_Flags_Auto) ? " [Manual]" : " [Auto]"));
                 }
 
                 pProcAmp->Release();

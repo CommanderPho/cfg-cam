@@ -1,6 +1,8 @@
 #ifndef CAMSET_H
 #define CAMSET_H
 
+#define VideoProcAmp_PowerlineFrequency (13)
+
 #include <string>
 #include <dshow.h>
 #include <vector>
