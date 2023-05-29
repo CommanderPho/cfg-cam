@@ -49,4 +49,6 @@ jobs:
       with:
         name: release-build
         path: |
-          x64/Release/
+          x64/Release/**/*.exe
+          x64/Release/**/*.pdb
+          x64/Release/**/*.dll
