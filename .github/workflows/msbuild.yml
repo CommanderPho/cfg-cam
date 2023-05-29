@@ -49,4 +49,4 @@ jobs:
       with:
         name: release-build
         path: |
-          build/Release
+          bin/Release
