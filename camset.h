@@ -2,6 +2,7 @@
 #define CAMSET_H
 
 #define VideoProcAmp_PowerlineFrequency (13)
+#define CameraControl_AutoExposurePriority (19)
 
 #include <string>
 #include <dshow.h>

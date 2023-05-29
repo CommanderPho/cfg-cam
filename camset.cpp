@@ -238,6 +238,8 @@ void SetDeviceSettings(IEnumMoniker *pEnum) {
                                                 hr = pCamCtrl->Set(CameraControl_Exposure, ParValue, FlagManual ? CameraControl_Flags_Manual : CameraControl_Flags_Auto);
                                             } else if (Parameter == "CameraControl_Focus") {
                                                 hr = pCamCtrl->Set(CameraControl_Focus, ParValue, FlagManual ? CameraControl_Flags_Manual : CameraControl_Flags_Auto);
+                                            } else if (Parameter == "CameraControl_AutoExposurePriority") {
+                                                hr = pCamCtrl->Set(CameraControl_AutoExposurePriority, ParValue, FlagManual ? CameraControl_Flags_Manual : CameraControl_Flags_Auto);
                                             } else if (Parameter == "CameraControl_Iris") {
                                                 hr = pCamCtrl->Set(CameraControl_Iris, ParValue, FlagManual ? CameraControl_Flags_Manual : CameraControl_Flags_Auto);
                                             } else if (Parameter == "CameraControl_Pan") {
@@ -424,6 +426,13 @@ void GetDeviceSettings(IEnumMoniker *pEnum) {
                     settArray.push_back("CameraControl_Exposure=" +
                             to_string(Val) +
                             ((Flags > CameraControl_Flags_Auto) ? " [Manual]" : " [Auto]"));
+                }
+
+                hr = pCamCtrl->Get(CameraControl_AutoExposurePriority, &Val, &Flags);
+                if (SUCCEEDED(hr)) {
+                    settArray.push_back("CameraControl_AutoExposurePriority=" +
+                        to_string(Val) +
+                        ((Flags > CameraControl_Flags_Auto) ? " [Manual]" : " [Auto]"));
                 }
 
                 hr = pCamCtrl->Get(CameraControl_Focus, &Val, &Flags);
